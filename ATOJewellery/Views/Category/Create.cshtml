@@ -1,0 +1,48 @@
+﻿@model Category
+
+<!-- In this page we are not creating a model rather, we are adding to an exsiting model in the db"Categoriess"| This does not need to pass throught the COntroller 
+In order for someone to add thier data we will use the form tag and add a method "post" post meaning to send the data
+-->
+<form method="post">
+
+    <div class=" border p-3 mt-4"> 
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+        </div>
+
+
+        <div asp-validation-summary="All"></div> <!--This helprt will display all the errors at the top if the filds are emty and the button is clicked -->
+
+        <!--Two labels and two inputs-->
+        <div class="mb-3">     
+            <label asp-for="Name"></label>   
+            <input asp-for="Name" class="form-control "/>
+            <!--When the button is clicked and there is nothing in the field this span will pop-up | INFORMING THE USER->
+            <span  asp-validation-for ="Name" class="text-danger"></span>   <!--Checks that the field is valid | somthering as been entered | issue not displaying error msg when button is clicked  -->
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DisplayOrder"></label>
+            <input asp-for="DisplayOrder" class="form-control " />
+            <!--When the button is clicked and there is nothing in the field this span will pop-up | INFORMING THE USER->
+            <span asp-validation-for ="DisplayOrder" class="text-danger"></span>   <!--Checks that the field is valid | somthering as been entered | issue not displaying error msg when button is clicked  -->
+        </div>
+
+        <!--Two Buttons, first submits the form, its dynamic functions are built in the categoryController | second reroutes back to the index page-->
+        <button type="submit" class="btn btn-primary" style="width:150px"> Create</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">Back To List</a>
+    </div>
+
+</form>
+  
+
+
+<!--Issue - This cloentside vaildation script is haveing issues  -->
+<!--THis how we use partial view-->
+  <!--THis needs to be used first in order to run the scripts for error on the client-side->
+@section Scripts{
+ @{
+    <!--The error msg above occurs on the server side, if we want to ruin them on client-side we use ValidationScriptpartial under shred folder-->
+        <partial name="_ValidationScriptsPartial" /> <!--THe name convention here is imortant to appear the same as in folder  | With thtis line the erre msg and sripts go away if it is working correctly on the clientside-->
+            }
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Category> // This line most be lowercase | THis line imports in to the view   | The @ symbol is the activate directive 
+@{//The @ variable sign is apart of c#
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Category</h1>
+
+
+
+<div class="container p-3">
+    <div class=" row" pt4>
+    <div class="col-6 "><h2 class="text-primary ">Category List</h2></div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp;
+        Create New Category
+    </a></div>  <!--This anchor is so we can  create a new Category item>-->
+    </div>
+</div>
+<br /><br/>
+
+<!--Since it is IENumerable we can navigate throught it as opposed to the list-->
+<table class="table table-bordered table-striped" style="width:100%">
+<thead>
+    <tr>
+        <th>
+            Category Name
+        </th>
+        <th>
+            Display Order
+        </th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+
+        @foreach (var obj in Model) // This will itterate through the model  
+        {// Now with this itteration we will create a table row
+            <tr>
+                <td width = "50%">
+                    @obj.Name
+                </td>
+                          <td width = "30%">
+                    @obj.DisplayOrder
+                    </td>
+                    <td>
+                    <dir class=" w-75 btn-group" role="group">
+                        <!--This link is a step up | asp-route is what we can use to bind our own variable . This case "id"  the value as  we can see is obj.Id-->
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class=" btn btn-primary">  <i class="bi bi-pencil-square"></i>   Edit</a>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class=" btn btn-danger"> <i class="bi bi-trash3-fill"></i>   Delete</a>
+                    </dir>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>

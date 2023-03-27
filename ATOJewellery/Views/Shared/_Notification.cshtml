@@ -1,0 +1,25 @@
+﻿
+<!---Now Instead of using "h2" we can use a tool called toastr for our alerts. Everything works same like Temdata only difference
+ we import thte css fromtoaster github on our lay out page, And we also have a cdn for the js here 
+ and beccause toaster is writen in in JS we used our local library here for it (wwwroot / library / jquery ...)
+-->
+
+@if (TempData["success"] != null)
+{
+     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <script>
+        toastr.success('@TempData["success"]');
+   </script> 
+   //<h2>@TempData["success"]</h2>
+}
+
+@if (TempData["error"] != null)
+{
+    <script src="/lib/jquery/dist/jjquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.error('@TempData["error"]');
+    </script>
+    //<h2>@TempData["error"]</h2>
+}
